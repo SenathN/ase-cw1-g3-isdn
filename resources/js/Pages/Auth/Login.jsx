@@ -23,17 +23,22 @@ export default function Login({ status, canResetPassword }) {
 
     return (
         <GuestLayout>
-            <Head title="Log in" />
+            <Head title="Login - IslandLink ISDN" />
+
+            <div className="mb-6 text-center">
+                <h2 className="text-xl font-bold text-gray-800">Welcome Back</h2>
+                <p className="text-sm text-gray-600 mt-1">Sign in to IslandLink Sales Distribution Network</p>
+            </div>
 
             {status && (
-                <div className="mb-4 text-sm font-medium text-green-600">
+                <div className="mb-4 text-sm font-medium text-green-600 bg-green-50 p-3 rounded-md">
                     {status}
                 </div>
             )}
 
             <form onSubmit={submit}>
                 <div>
-                    <InputLabel htmlFor="email" value="Email" />
+                    <InputLabel htmlFor="email" value="Email Address" />
 
                     <TextInput
                         id="email"
@@ -65,7 +70,7 @@ export default function Login({ status, canResetPassword }) {
                     <InputError message={errors.password} className="mt-2" />
                 </div>
 
-                <div className="mt-4 block">
+                <div className="mt-4 flex items-center justify-between">
                     <label className="flex items-center">
                         <Checkbox
                             name="remember"
@@ -78,21 +83,31 @@ export default function Login({ status, canResetPassword }) {
                             Remember me
                         </span>
                     </label>
-                </div>
 
-                <div className="mt-4 flex items-center justify-end">
                     {canResetPassword && (
                         <Link
                             href={route('password.request')}
-                            className="rounded-md text-sm text-gray-600 underline hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                            className="text-sm text-indigo-600 hover:text-indigo-800 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
                         >
-                            Forgot your password?
+                            Forgot password?
                         </Link>
                     )}
+                </div>
 
-                    <PrimaryButton className="ms-4" disabled={processing}>
-                        Log in
+                <div className="mt-6">
+                    <PrimaryButton className="w-full justify-center" disabled={processing}>
+                        Sign In
                     </PrimaryButton>
+                </div>
+
+                <div className="mt-6 text-center">
+                    <span className="text-sm text-gray-600">Don't have an account? </span>
+                    <Link
+                        href={route('register')}
+                        className="text-sm text-indigo-600 hover:text-indigo-800 font-medium"
+                    >
+                        Register now
+                    </Link>
                 </div>
             </form>
         </GuestLayout>

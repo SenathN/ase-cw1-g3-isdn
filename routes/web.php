@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\Customer\DashboardController as CustomerDashboardController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -14,10 +15,39 @@ Route::get('/', function () {
     ]);
 });
 
+// Legacy dashboard route - redirects to role-based dashboard
 Route::get('/dashboard', function () {
-    return Inertia::render('Dashboard');
+    $user = auth()->user();
+    return redirect()->route($user->getDashboardRoute());
 })->middleware(['auth', 'verified'])->name('dashboard');
 
+/*
+|--------------------------------------------------------------------------
+| Customer Routes
+|--------------------------------------------------------------------------
+*/
+Route::middleware(['auth', 'verified', 'role:customer'])->prefix('customer')->name('customer.')->group(function () {
+    Route::get('/dashboard', [CustomerDashboardController::class, 'index'])->name('dashboard');
+    
+    // Placeholder routes for navigation (to be implemented later)
+    Route::get('/products', function () {
+        return Inertia::render('Customer/Products/Index');
+    })->name('products.index');
+    
+    Route::get('/orders', function () {
+        return Inertia::render('Customer/Orders/Index');
+    })->name('orders.index');
+    
+    Route::get('/cart', function () {
+        return Inertia::render('Customer/Cart/Index');
+    })->name('cart.index');
+});
+
+/*
+|--------------------------------------------------------------------------
+| Profile Routes (shared across all roles)
+|--------------------------------------------------------------------------
+*/
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
