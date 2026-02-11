@@ -17,11 +17,11 @@ class PopulateForDeliverySchedules extends Seeder
     {
         DB::beginTransaction();
         
-        collect(range(1, 10))->each(function () {
-            \App\Models\Order::firstOrCreate([
-                'code' => ucwords(Str::random(3).'-'.Str::random(4).'-'.Str::random(3)),
-            ]);
-        });
+        // collect(range(1, 10))->each(function () {
+        //     \App\Models\Order::firstOrCreate([
+        //         'code' => ucwords(Str::random(3).'-'.Str::random(4).'-'.Str::random(3)),
+        //     ]);
+        // });
 
         $driver_user_instance = \App\Models\User::factory()->create([
             'name' => 'Test User',

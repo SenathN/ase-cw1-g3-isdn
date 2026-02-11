@@ -1,42 +1,45 @@
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
-import { Button } from '@headlessui/react';
-import { Head, Link, router } from '@inertiajs/react';
+import { Head, Link, usePage } from '@inertiajs/react';
 import Form from './Form';
-import { useEffect } from 'react';
+import { ChevronRightIcon } from '@heroicons/react/24/solid';
+import { useEffect, useState } from 'react';
+import Toast from '@/Components/Toast';
 
-export default function Index({ schedule }) {
+export default function Edit({ schedule }) {
+    const { flash } = usePage().props;
+    const [showToast, setShowToast] = useState(false);
 
-    // useEffect(() => {
-        
-    //     axios.get(route('logistics.orders.list'))
-    //         .then(response => {
-    //             // Handle response and update state with options
-    //             console.log('logistics.orders.list > ',response.data.data)
-    //             setOrderOptions(response.data.data)
-    //         })
-    //         .catch(error => {
-    //             console.error('Error fetching options:', error)
-    //         })
-        
-    // }, [schedules]);
+    useEffect(() => {
+        if (flash.message) {
+            setShowToast(true);
+        }
+    }, [flash.message]);
 
     return (
         <AuthenticatedLayout
-            header={
-                <h2 className="text-xl font-semibold leading-tight text-gray-800">
-                    Delivery Schedules {'>'} Edit Schedule
-                </h2>
-            }
+            header={<h2 className="text-2xl font-bold leading-tight text-gray-900">Edit Delivery Schedule</h2>}
         >
-            <Head title="Delivery Schedules" />
+            <Head title="Edit Delivery Schedule" />
+
+            {showToast && flash.message && (
+                <Toast 
+                    message={flash.message} 
+                    type={flash.type || 'success'}
+                    onClose={() => setShowToast(false)}
+                />
+            )}
             
             <div className="py-12">
                 <div className="mx-auto max-w-7xl sm:px-6 lg:px-8">
-                    <div className="overflow-hidden bg-white shadow-sm sm:rounded-lg">
-                        <div className="p-6 text-gray-900">
-                            <Form schedule={schedule} />
-                        </div>
+                    {/* Breadcrumb */}
+                    <div className="mb-6 flex items-center gap-2 text-sm">
+                        <Link href={route('logistics.schedules.index')} className="text-rose-600 hover:text-rose-700 font-medium">
+                            Delivery Schedules
+                        </Link>
+                        <ChevronRightIcon className="w-4 h-4 text-gray-400" />
+                        <span className="text-gray-600">Edit Schedule: {schedule.code}</span>
                     </div>
+                    <Form schedule={schedule} />
                 </div>
             </div>
 

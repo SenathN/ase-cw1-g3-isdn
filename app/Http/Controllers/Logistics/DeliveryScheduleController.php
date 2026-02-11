@@ -70,7 +70,7 @@ class DeliveryScheduleController extends Controller
                 'scheduled_date' => 'required|date',
                 'scheduled_time' => 'required',
                 'route_notes' => 'nullable|string',
-                'status' => 'required|string'
+                'status' => 'required|in:pending,scheduled,out_for_delivery,delivered,failed'
             ]);
 
             $deliverySchedule->update($validated);
@@ -94,7 +94,7 @@ class DeliveryScheduleController extends Controller
 
     public function optionsFetch()
     {
-        $orders = \App\Models\Order::select('id', 'code')->get();
+        $orders = \App\Models\Order::select('id', 'order_number as code')->get();
 
         return response()->json([
             'data' => $orders

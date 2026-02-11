@@ -1,4 +1,4 @@
-import CustomerLayout from '@/Layouts/CustomerLayout';
+import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
 import { Head, Link, router } from '@inertiajs/react';
 import { useState } from 'react';
 
@@ -11,7 +11,7 @@ export default function Index(props) {
 
     const handleSearch = (e) => {
         e.preventDefault();
-        router.get(route('customer.products.index'), {
+        router.get(route(props.auth.user.role+'.products.index'), {
             search,
             category: selectedCategory,
             sort: sortBy,
@@ -20,7 +20,7 @@ export default function Index(props) {
 
     const handleCategoryChange = (categoryId) => {
         setSelectedCategory(categoryId);
-        router.get(route('customer.products.index'), {
+        router.get(route(props.auth.user.role+'.products.index'), {
             search,
             category: categoryId,
             sort: sortBy,
@@ -29,7 +29,7 @@ export default function Index(props) {
 
     const handleSortChange = (sort) => {
         setSortBy(sort);
-        router.get(route('customer.products.index'), {
+        router.get(route(props.auth.user.role+'.products.index'), {
             search,
             category: selectedCategory,
             sort,
@@ -40,14 +40,14 @@ export default function Index(props) {
         setSearch('');
         setSelectedCategory('');
         setSortBy('name');
-        router.get(route('customer.products.index'));
+        router.get(route(props.auth.user.role+'.products.index'));
     };
 
     const productList = products?.data || [];
     const categoryList = categories || [];
 
     return (
-        <CustomerLayout
+        <AuthenticatedLayout
             header={
                 <h2 className="text-xl font-semibold leading-tight text-gray-800">
                     Products
@@ -66,7 +66,7 @@ export default function Index(props) {
                                 {featuredProducts.map((product) => (
                                     <Link
                                         key={product.id}
-                                        href={route('customer.products.show', product.id)}
+                                        href={route(props.auth.user.role+'.products.show', product.id)}
                                         className="group overflow-hidden rounded-lg bg-white shadow-sm transition-shadow hover:shadow-md"
                                     >
                                         <div className="aspect-square bg-gray-100 p-4">
@@ -190,7 +190,7 @@ export default function Index(props) {
                                 {productList.map((product) => (
                                     <Link
                                         key={product.id}
-                                        href={route('customer.products.show', product.id)}
+                                        href={route( props.auth.user.role+'.products.show', product.id)}
                                         className="group overflow-hidden rounded-lg bg-white shadow-sm transition-all hover:shadow-md"
                                     >
                                         <div className="relative aspect-square bg-gray-50 p-4">
@@ -280,6 +280,6 @@ export default function Index(props) {
                     )}
                 </div>
             </div>
-        </CustomerLayout>
+        </AuthenticatedLayout>
     );
 }

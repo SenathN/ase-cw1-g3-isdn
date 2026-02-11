@@ -98,6 +98,41 @@ Route::middleware(['auth', 'verified', 'role:rdc_staff'])->prefix('rdc')->name('
 */
 Route::middleware(['auth', 'verified', 'role:logistics'])->prefix('logistics')->name('logistics.')->group(function () {
     Route::get('/dashboard', [LogisticsDashboardController::class, 'index'])->name('dashboard');
+
+        Route::resource('delivery-schedules', \App\Http\Controllers\Logistics\DeliveryScheduleController::class)
+            ->names([
+                'index' => 'schedules.index',
+                'create' => 'schedules.create',
+                'store' => 'schedules.store',
+                'edit' => 'schedules.edit',
+                'update' => 'schedules.update',
+                'destroy' => 'schedules.destroy'
+            ]);
+
+            Route::get('orders-list', 
+                [\App\Http\Controllers\Logistics\DeliveryScheduleController::class, 'optionsFetch']
+            )->name('orders.list');
+            Route::get('drivers-list', 
+                [\App\Http\Controllers\Logistics\DeliveryScheduleController::class, 'driversOptionsFetch']
+            )->name('drivers.list');
+            
+            // Drivers management
+            Route::resource('drivers', \App\Http\Controllers\Logistics\DriverController::class)
+                ->names([
+                    'index' => 'drivers.index',
+                    'create' => 'drivers.create',
+                    'store' => 'drivers.store',
+                    'edit' => 'drivers.edit',
+                    'update' => 'drivers.update',
+                    'destroy' => 'drivers.destroy'
+                ]);
+
+            Route::get('users-list', [\App\Http\Controllers\Logistics\DriverController::class, 'usersOptionsFetch'])
+                ->name('users.list');
+            
+    Route::get('/products', [CustomerProductController::class, 'index'])->name('products.index');
+    Route::get('/products/{product}', [CustomerProductController::class, 'show'])->name('products.show');
+    
 });
 
 /*
@@ -128,26 +163,7 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
-    Route::prefix('logistics')
-        ->name('logistics.')
-        ->group(function () {
-            Route::resource('delivery-schedules', \App\Http\Controllers\Logistics\DeliveryScheduleController::class)
-                ->names([
-                    'index' => 'schedules.index',
-                    'create' => 'schedules.create',
-                    'store' => 'schedules.store',
-                    'edit' => 'schedules.edit',
-                    'update' => 'schedules.update',
-                    'destroy' => 'schedules.destroy'
-                ]);
-
-                Route::get('orders-list', 
-                    [\App\Http\Controllers\Logistics\DeliveryScheduleController::class, 'optionsFetch']
-                )->name('orders.list');
-                Route::get('drivers-list', 
-                    [\App\Http\Controllers\Logistics\DeliveryScheduleController::class, 'driversOptionsFetch']
-                )->name('drivers.list');
-        });
+    
 });
 
 require __DIR__.'/auth.php';
