@@ -7,7 +7,7 @@ export default function Index({ invoices = {}, stats = {}, filters = {}, statusO
 
     const handleStatusChange = (status) => {
         setSelectedStatus(status);
-        router.get(route('customer.invoices.index'), { status }, { preserveState: true });
+        router.get(route('customer.invoices.index'), { status }, { preserveState: true, replace: true });
     };
 
     const getStatusBadgeColor = (status) => {

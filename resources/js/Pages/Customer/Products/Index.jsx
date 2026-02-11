@@ -2,11 +2,12 @@ import CustomerLayout from '@/Layouts/CustomerLayout';
 import { Head, Link, router } from '@inertiajs/react';
 import { useState } from 'react';
 
-export default function Index({ products = {}, categories = [], featuredProducts = [], filters = {} }) {
-    const safeFilters = filters || {};
-    const [search, setSearch] = useState(safeFilters.search || '');
-    const [selectedCategory, setSelectedCategory] = useState(safeFilters.category || '');
-    const [sortBy, setSortBy] = useState(safeFilters.sort || 'name');
+export default function Index(props) {
+    const { products = {}, categories = [], featuredProducts = [], filters: rawFilters } = props || {};
+    const filters = rawFilters && typeof rawFilters === 'object' && !Array.isArray(rawFilters) ? rawFilters : {};
+    const [search, setSearch] = useState(filters.search || '');
+    const [selectedCategory, setSelectedCategory] = useState(filters.category || '');
+    const [sortBy, setSortBy] = useState(filters.sort || 'name');
 
     const handleSearch = (e) => {
         e.preventDefault();
@@ -14,7 +15,7 @@ export default function Index({ products = {}, categories = [], featuredProducts
             search,
             category: selectedCategory,
             sort: sortBy,
-        }, { preserveState: true });
+        }, { preserveState: true, replace: true });
     };
 
     const handleCategoryChange = (categoryId) => {
@@ -23,7 +24,7 @@ export default function Index({ products = {}, categories = [], featuredProducts
             search,
             category: categoryId,
             sort: sortBy,
-        }, { preserveState: true });
+        }, { preserveState: true, replace: true });
     };
 
     const handleSortChange = (sort) => {
@@ -32,7 +33,7 @@ export default function Index({ products = {}, categories = [], featuredProducts
             search,
             category: selectedCategory,
             sort,
-        }, { preserveState: true });
+        }, { preserveState: true, replace: true });
     };
 
     const clearFilters = () => {

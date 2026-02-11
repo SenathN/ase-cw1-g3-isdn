@@ -8,6 +8,11 @@ use App\Http\Controllers\Customer\OrderController as CustomerOrderController;
 use App\Http\Controllers\Customer\TrackingController as CustomerTrackingController;
 use App\Http\Controllers\Customer\InvoiceController as CustomerInvoiceController;
 use App\Http\Controllers\Customer\PaymentController as CustomerPaymentController;
+use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
+use App\Http\Controllers\RDC\DashboardController as RDCDashboardController;
+use App\Http\Controllers\Logistics\DashboardController as LogisticsDashboardController;
+use App\Http\Controllers\Driver\DashboardController as DriverDashboardController;
+use App\Http\Controllers\Accounts\DashboardController as AccountsDashboardController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -68,6 +73,51 @@ Route::middleware(['auth', 'verified', 'role:customer'])->prefix('customer')->na
     Route::get('/payments/process/{order}', [CustomerPaymentController::class, 'create'])->name('payments.create');
     Route::post('/payments/process/{order}', [CustomerPaymentController::class, 'store'])->name('payments.store');
     Route::get('/payments/{payment}', [CustomerPaymentController::class, 'show'])->name('payments.show');
+});
+
+/*
+|--------------------------------------------------------------------------
+| Admin Routes
+|--------------------------------------------------------------------------
+*/
+Route::middleware(['auth', 'verified', 'role:admin'])->prefix('admin')->name('admin.')->group(function () {
+    Route::get('/dashboard', [AdminDashboardController::class, 'index'])->name('dashboard');
+});
+
+/*
+|--------------------------------------------------------------------------
+| RDC Staff Routes
+|--------------------------------------------------------------------------
+*/
+Route::middleware(['auth', 'verified', 'role:rdc_staff'])->prefix('rdc')->name('rdc.')->group(function () {
+    Route::get('/dashboard', [RDCDashboardController::class, 'index'])->name('dashboard');
+});
+
+/*
+|--------------------------------------------------------------------------
+| Logistics Routes
+|--------------------------------------------------------------------------
+*/
+Route::middleware(['auth', 'verified', 'role:logistics'])->prefix('logistics')->name('logistics.')->group(function () {
+    Route::get('/dashboard', [LogisticsDashboardController::class, 'index'])->name('dashboard');
+});
+
+/*
+|--------------------------------------------------------------------------
+| Driver Routes
+|--------------------------------------------------------------------------
+*/
+Route::middleware(['auth', 'verified', 'role:driver'])->prefix('driver')->name('driver.')->group(function () {
+    Route::get('/dashboard', [DriverDashboardController::class, 'index'])->name('dashboard');
+});
+
+/*
+|--------------------------------------------------------------------------
+| Accounts Routes
+|--------------------------------------------------------------------------
+*/
+Route::middleware(['auth', 'verified', 'role:accounts'])->prefix('accounts')->name('accounts.')->group(function () {
+    Route::get('/dashboard', [AccountsDashboardController::class, 'index'])->name('dashboard');
 });
 
 /*

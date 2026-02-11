@@ -65,7 +65,7 @@ class ProductController extends Controller
             'products' => $products,
             'categories' => $categories,
             'featuredProducts' => $featuredProducts,
-            'filters' => $request->only(['search', 'category', 'min_price', 'max_price', 'sort']),
+            'filters' => (object) $request->only(['search', 'category', 'min_price', 'max_price', 'sort']),
         ]);
     }
 

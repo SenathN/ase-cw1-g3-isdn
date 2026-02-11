@@ -7,6 +7,7 @@ export default function Index({ orders = {}, filters = {}, statuses = {} }) {
     const handleStatusFilter = (status) => {
         router.get(route('customer.orders.index'), { status: status || undefined }, {
             preserveState: true,
+            replace: true,
         });
     };
 
