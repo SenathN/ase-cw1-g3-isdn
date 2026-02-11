@@ -198,27 +198,27 @@ export default function Show({ order = {}, trackingHistory = [], statusSteps = [
                                 <div className="space-y-2">
                                     <div className="flex justify-between text-sm">
                                         <span className="text-gray-600">Subtotal</span>
-                                        <span>${parseFloat(order.subtotal).toFixed(2)}</span>
+                                        <span>Rs. {parseFloat(order.subtotal).toFixed(2)}</span>
                                     </div>
                                     <div className="flex justify-between text-sm">
                                         <span className="text-gray-600">Tax</span>
-                                        <span>${parseFloat(order.tax).toFixed(2)}</span>
+                                        <span>Rs. {parseFloat(order.tax).toFixed(2)}</span>
                                     </div>
                                     <div className="flex justify-between text-sm">
                                         <span className="text-gray-600">Delivery Fee</span>
-                                        <span>${parseFloat(order.delivery_fee).toFixed(2)}</span>
+                                        <span>Rs. {parseFloat(order.delivery_fee).toFixed(2)}</span>
                                     </div>
                                     {parseFloat(order.discount) > 0 && (
                                         <div className="flex justify-between text-sm text-green-600">
                                             <span>Discount</span>
-                                            <span>-${parseFloat(order.discount).toFixed(2)}</span>
+                                            <span>-Rs. {parseFloat(order.discount).toFixed(2)}</span>
                                         </div>
                                     )}
                                     <div className="border-t pt-2">
                                         <div className="flex justify-between font-semibold">
                                             <span>Total</span>
                                             <span className="text-rose-600">
-                                                ${parseFloat(order.total).toFixed(2)}
+                                                Rs. {parseFloat(order.total).toFixed(2)}
                                             </span>
                                         </div>
                                     </div>
@@ -262,12 +262,12 @@ export default function Show({ order = {}, trackingHistory = [], statusSteps = [
                                     <div className="flex-1">
                                         <h4 className="font-medium text-gray-900">{item.product_name}</h4>
                                         <p className="text-sm text-gray-600">
-                                            ${parseFloat(item.unit_price).toFixed(2)} × {item.quantity}
+                                            Rs. {parseFloat(item.unit_price).toFixed(2)} × {item.quantity}
                                         </p>
                                     </div>
                                     <div className="text-right">
                                         <p className="font-semibold text-gray-900">
-                                            ${parseFloat(item.subtotal).toFixed(2)}
+                                            Rs. {parseFloat(item.subtotal).toFixed(2)}
                                         </p>
                                     </div>
                                 </div>

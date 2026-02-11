@@ -53,7 +53,7 @@ export default function Index({ activeOrders = [], deliveredOrders = [], statusS
                                                         {order.order_number}
                                                     </Link>
                                                     <p className="mt-1 text-sm text-gray-600">
-                                                        {order.item_count} item(s) • ${parseFloat(order.total).toFixed(2)}
+                                                        {order.item_count} item(s) • Rs. {parseFloat(order.total).toFixed(2)}
                                                     </p>
                                                     <p className="text-sm text-gray-500">
                                                         Ordered on {order.created_at}
@@ -183,7 +183,7 @@ export default function Index({ activeOrders = [], deliveredOrders = [], statusS
                                                     {order.delivered_at}
                                                 </td>
                                                 <td className="whitespace-nowrap px-6 py-4 text-sm font-medium text-gray-900">
-                                                    ${parseFloat(order.total).toFixed(2)}
+                                                    Rs. {parseFloat(order.total).toFixed(2)}
                                                 </td>
                                                 <td className="whitespace-nowrap px-6 py-4 text-right">
                                                     <Link

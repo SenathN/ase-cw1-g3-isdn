@@ -87,7 +87,7 @@ export default function Index(props) {
                                                 {product.name}
                                             </h4>
                                             <p className="mt-1 text-sm font-bold text-rose-600">
-                                                ${parseFloat(product.price).toFixed(2)}
+                                                Rs. {parseFloat(product.price).toFixed(2)}
                                             </p>
                                         </div>
                                     </Link>
@@ -225,11 +225,11 @@ export default function Index(props) {
                                             </h3>
                                             <div className="mt-2 flex items-baseline gap-2">
                                                 <span className="text-lg font-bold text-rose-600">
-                                                    ${parseFloat(product.price).toFixed(2)}
+                                                    Rs. {parseFloat(product.price).toFixed(2)}
                                                 </span>
                                                 {product.original_price && product.is_on_sale && (
                                                     <span className="text-sm text-gray-400 line-through">
-                                                        ${parseFloat(product.original_price).toFixed(2)}
+                                                        Rs. {parseFloat(product.original_price).toFixed(2)}
                                                     </span>
                                                 )}
                                             </div>

@@ -48,12 +48,12 @@ export default function Index({ invoices = {}, stats = {}, filters = {}, statusO
                         <div className="rounded-lg bg-white p-4 shadow-sm">
                             <p className="text-sm text-gray-500">Pending</p>
                             <p className="text-2xl font-bold text-yellow-600">{stats.pending_invoices}</p>
-                            <p className="text-xs text-gray-500">${parseFloat(stats.pending_amount || 0).toFixed(2)}</p>
+                            <p className="text-xs text-gray-500">Rs. {parseFloat(stats.pending_amount || 0).toFixed(2)}</p>
                         </div>
                         <div className="rounded-lg bg-white p-4 shadow-sm">
                             <p className="text-sm text-gray-500">Paid</p>
                             <p className="text-2xl font-bold text-green-600">{stats.paid_invoices}</p>
-                            <p className="text-xs text-gray-500">${parseFloat(stats.paid_amount || 0).toFixed(2)}</p>
+                            <p className="text-xs text-gray-500">Rs. {parseFloat(stats.paid_amount || 0).toFixed(2)}</p>
                         </div>
                         <div className="rounded-lg bg-white p-4 shadow-sm">
                             <p className="text-sm text-gray-500">Overdue</p>
@@ -139,7 +139,7 @@ export default function Index({ invoices = {}, stats = {}, filters = {}, statusO
                                                 {new Date(invoice.due_date).toLocaleDateString()}
                                             </td>
                                             <td className="whitespace-nowrap px-6 py-4 text-sm font-medium text-gray-900">
-                                                ${parseFloat(invoice.total).toFixed(2)}
+                                                Rs. {parseFloat(invoice.total).toFixed(2)}
                                             </td>
                                             <td className="whitespace-nowrap px-6 py-4">
                                                 <span

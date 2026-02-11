@@ -49,7 +49,7 @@ export default function Index({ payments = {}, stats = {}, filters = {}, statusO
                         <div className="rounded-lg bg-white p-4 shadow-sm">
                             <p className="text-sm text-gray-500">Completed</p>
                             <p className="text-2xl font-bold text-green-600">{stats.completed_payments}</p>
-                            <p className="text-xs text-gray-500">${parseFloat(stats.total_paid || 0).toFixed(2)}</p>
+                            <p className="text-xs text-gray-500">Rs. {parseFloat(stats.total_paid || 0).toFixed(2)}</p>
                         </div>
                         <div className="rounded-lg bg-white p-4 shadow-sm">
                             <p className="text-sm text-gray-500">Pending</p>
@@ -58,7 +58,7 @@ export default function Index({ payments = {}, stats = {}, filters = {}, statusO
                         <div className="rounded-lg bg-white p-4 shadow-sm">
                             <p className="text-sm text-gray-500">Refunded</p>
                             <p className="text-2xl font-bold text-gray-600">
-                                ${parseFloat(stats.total_refunded || 0).toFixed(2)}
+                                Rs. {parseFloat(stats.total_refunded || 0).toFixed(2)}
                             </p>
                         </div>
                     </div>
@@ -138,7 +138,7 @@ export default function Index({ payments = {}, stats = {}, filters = {}, statusO
                                                 {payment.payment_method.replace('_', ' ').replace(/\b\w/g, l => l.toUpperCase())}
                                             </td>
                                             <td className="whitespace-nowrap px-6 py-4 text-sm font-medium text-gray-900">
-                                                ${parseFloat(payment.amount).toFixed(2)}
+                                                Rs. {parseFloat(payment.amount).toFixed(2)}
                                             </td>
                                             <td className="whitespace-nowrap px-6 py-4">
                                                 <span

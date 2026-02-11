@@ -191,11 +191,11 @@ export default function Checkout({ cart = {}, items = [], totals = {}, issues = 
                                                 <div className="flex-1">
                                                     <p className="font-medium text-gray-900">{item.product?.name}</p>
                                                     <p className="text-sm text-gray-500">
-                                                        {item.quantity} × ${parseFloat(item.unit_price).toFixed(2)}
+                                                        {item.quantity} × Rs. {parseFloat(item.unit_price).toFixed(2)}
                                                     </p>
                                                 </div>
                                                 <p className="font-medium text-gray-900">
-                                                    ${(item.quantity * item.unit_price).toFixed(2)}
+                                                    Rs. {(item.quantity * item.unit_price).toFixed(2)}
                                                 </p>
                                             </li>
                                         ))}
@@ -212,19 +212,19 @@ export default function Checkout({ cart = {}, items = [], totals = {}, issues = 
                                     <div className="p-4 space-y-3">
                                         <div className="flex justify-between text-sm">
                                             <span className="text-gray-600">Subtotal</span>
-                                            <span className="text-gray-900">${totals.subtotal?.toFixed(2)}</span>
+                                            <span className="text-gray-900">Rs. {totals.subtotal?.toFixed(2)}</span>
                                         </div>
                                         <div className="flex justify-between text-sm">
                                             <span className="text-gray-600">Tax (10%)</span>
-                                            <span className="text-gray-900">${totals.tax?.toFixed(2)}</span>
+                                            <span className="text-gray-900">Rs. {totals.tax?.toFixed(2)}</span>
                                         </div>
                                         <div className="flex justify-between text-sm">
                                             <span className="text-gray-600">Delivery Fee</span>
-                                            <span className="text-gray-900">${totals.delivery_fee?.toFixed(2)}</span>
+                                            <span className="text-gray-900">Rs. {totals.delivery_fee?.toFixed(2)}</span>
                                         </div>
                                         <div className="border-t border-gray-200 pt-3 flex justify-between">
                                             <span className="font-medium text-gray-900">Total</span>
-                                            <span className="font-bold text-lg text-rose-600">${totals.total?.toFixed(2)}</span>
+                                            <span className="font-bold text-lg text-rose-600">Rs. {totals.total?.toFixed(2)}</span>
                                         </div>
                                     </div>
                                     <div className="p-4 pt-0 space-y-3">

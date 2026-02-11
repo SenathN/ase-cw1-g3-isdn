@@ -87,7 +87,7 @@ export default function Login({ status, canResetPassword }) {
                     {canResetPassword && (
                         <Link
                             href={route('password.request')}
-                            className="text-sm text-indigo-600 hover:text-indigo-800 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                            className="text-sm text-rose-600 hover:text-rose-800 focus:outline-none focus:ring-2 focus:ring-rose-500 focus:ring-offset-2"
                         >
                             Forgot password?
                         </Link>
@@ -104,7 +104,7 @@ export default function Login({ status, canResetPassword }) {
                     <span className="text-sm text-gray-600">Don't have an account? </span>
                     <Link
                         href={route('register')}
-                        className="text-sm text-indigo-600 hover:text-indigo-800 font-medium"
+                        className="text-sm text-rose-600 hover:text-rose-800 font-medium"
                     >
                         Register now
                     </Link>

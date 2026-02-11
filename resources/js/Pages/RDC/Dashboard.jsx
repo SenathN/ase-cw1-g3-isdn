@@ -41,8 +41,8 @@ export default function Dashboard() {
                                     <p className="mt-1 text-sm text-teal-600">Manage warehouse inventory</p>
                                 </div>
                                 <div className="rounded-lg bg-indigo-50 p-4">
-                                    <h4 className="font-medium text-indigo-800">🚚 Dispatch</h4>
-                                    <p className="mt-1 text-sm text-indigo-600">Prepare orders for delivery</p>
+                                    <h4 className="font-medium text-rose-800">🚚 Dispatch</h4>
+                                    <p className="mt-1 text-sm text-rose-600">Prepare orders for delivery</p>
                                 </div>
                             </div>
                         </div>

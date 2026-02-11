@@ -103,7 +103,7 @@ export default function Index({ orders = {}, filters = {}, statuses = {} }) {
                                         </div>
                                         <div className="text-right">
                                             <p className="text-lg font-bold text-rose-600">
-                                                ${parseFloat(order.total).toFixed(2)}
+                                                Rs. {parseFloat(order.total).toFixed(2)}
                                             </p>
                                             <p className="text-sm text-gray-500">
                                                 {order.items?.length || 0} items

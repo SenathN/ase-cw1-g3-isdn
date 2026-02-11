@@ -74,7 +74,7 @@ export default function Dashboard({ stats = {}, recentOrders = [] }) {
                         <div className="overflow-hidden rounded-lg bg-white p-6 shadow-sm">
                             <div className="text-sm font-medium text-gray-500">Total Spent</div>
                             <div className="mt-2 text-3xl font-bold text-green-600">
-                                ${(stats.totalSpent || 0).toLocaleString()}
+                                Rs. {(stats.totalSpent || 0).toLocaleString()}
                             </div>
                         </div>
                     </div>
@@ -112,7 +112,7 @@ export default function Dashboard({ stats = {}, recentOrders = [] }) {
                                 <h3 className="text-lg font-semibold text-gray-800">Recent Orders</h3>
                                 <Link
                                     href={route('customer.orders.index')}
-                                    className="text-sm text-indigo-600 hover:text-indigo-800"
+                                    className="text-sm text-rose-600 hover:text-rose-800"
                                 >
                                     View all →
                                 </Link>
@@ -125,7 +125,7 @@ export default function Dashboard({ stats = {}, recentOrders = [] }) {
                                     <p className="text-gray-500">No orders yet</p>
                                     <Link
                                         href={route('customer.products.index')}
-                                        className="mt-4 inline-block text-indigo-600 hover:text-indigo-800"
+                                        className="mt-4 inline-block text-rose-600 hover:text-rose-800"
                                     >
                                         Start shopping →
                                     </Link>
@@ -147,7 +147,7 @@ export default function Dashboard({ stats = {}, recentOrders = [] }) {
                                             </div>
                                             <div className="text-right">
                                                 <div className="font-medium text-gray-900">
-                                                    ${parseFloat(order.total || 0).toFixed(2)}
+                                                    Rs. {parseFloat(order.total || 0).toFixed(2)}
                                                 </div>
                                                 <span className={`inline-flex rounded-full px-2 py-1 text-xs font-medium ${
                                                     order.status === 'delivered'

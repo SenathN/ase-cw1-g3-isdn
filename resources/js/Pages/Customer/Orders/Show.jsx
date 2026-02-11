@@ -191,11 +191,11 @@ export default function Show({ order = {} }) {
                                             <div className="flex-1">
                                                 <p className="font-medium text-gray-900">{item.product_name}</p>
                                                 <p className="text-sm text-gray-500">
-                                                    {item.quantity} × ${parseFloat(item.unit_price).toFixed(2)}
+                                                    {item.quantity} × Rs. {parseFloat(item.unit_price).toFixed(2)}
                                                 </p>
                                             </div>
                                             <p className="font-medium text-gray-900">
-                                                ${parseFloat(item.subtotal).toFixed(2)}
+                                                Rs. {parseFloat(item.subtotal).toFixed(2)}
                                             </p>
                                         </li>
                                     ))}
@@ -213,25 +213,25 @@ export default function Show({ order = {} }) {
                                 <div className="p-4 space-y-3">
                                     <div className="flex justify-between text-sm">
                                         <span className="text-gray-600">Subtotal</span>
-                                        <span className="text-gray-900">${parseFloat(order.subtotal).toFixed(2)}</span>
+                                        <span className="text-gray-900">Rs. {parseFloat(order.subtotal).toFixed(2)}</span>
                                     </div>
                                     <div className="flex justify-between text-sm">
                                         <span className="text-gray-600">Tax</span>
-                                        <span className="text-gray-900">${parseFloat(order.tax).toFixed(2)}</span>
+                                        <span className="text-gray-900">Rs. {parseFloat(order.tax).toFixed(2)}</span>
                                     </div>
                                     <div className="flex justify-between text-sm">
                                         <span className="text-gray-600">Delivery Fee</span>
-                                        <span className="text-gray-900">${parseFloat(order.delivery_fee).toFixed(2)}</span>
+                                        <span className="text-gray-900">Rs. {parseFloat(order.delivery_fee).toFixed(2)}</span>
                                     </div>
                                     {order.discount > 0 && (
                                         <div className="flex justify-between text-sm">
                                             <span className="text-gray-600">Discount</span>
-                                            <span className="text-green-600">-${parseFloat(order.discount).toFixed(2)}</span>
+                                            <span className="text-green-600">-Rs. {parseFloat(order.discount).toFixed(2)}</span>
                                         </div>
                                     )}
                                     <div className="border-t border-gray-200 pt-3 flex justify-between">
                                         <span className="font-medium text-gray-900">Total</span>
-                                        <span className="font-bold text-lg text-rose-600">${parseFloat(order.total).toFixed(2)}</span>
+                                        <span className="font-bold text-lg text-rose-600">Rs. {parseFloat(order.total).toFixed(2)}</span>
                                     </div>
                                 </div>
                             </div>

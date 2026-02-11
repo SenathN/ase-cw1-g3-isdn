@@ -114,7 +114,7 @@ export default function Show({ payment = {} }) {
                                 <div>
                                     <dt className="text-sm font-medium text-gray-500">Amount</dt>
                                     <dd className="mt-1 text-xl font-bold text-rose-600">
-                                        ${parseFloat(payment.amount).toFixed(2)}
+                                        Rs. {parseFloat(payment.amount).toFixed(2)}
                                     </dd>
                                 </div>
                                 <div>

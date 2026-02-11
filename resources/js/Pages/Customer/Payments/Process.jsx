@@ -197,7 +197,7 @@ export default function Process({ order = {}, paymentMethods = [] }) {
                                         <div className="p-6">
                                             <div className="rounded-lg bg-yellow-50 p-4">
                                                 <p className="text-sm text-yellow-800">
-                                                    Please prepare the exact amount of <strong>${parseFloat(order.total).toFixed(2)}</strong> for the delivery driver.
+                                                    Please prepare the exact amount of <strong>Rs. {parseFloat(order.total).toFixed(2)}</strong> for the delivery driver.
                                                     Your order will be marked as paid upon delivery.
                                                 </p>
                                             </div>
@@ -214,7 +214,7 @@ export default function Process({ order = {}, paymentMethods = [] }) {
                                     >
                                         {processing
                                             ? 'Processing...'
-                                            : `Pay $${parseFloat(order.total).toFixed(2)}`}
+                                            : `Pay Rs. ${parseFloat(order.total).toFixed(2)}`}
                                     </button>
                                 </div>
                             </form>
@@ -234,7 +234,7 @@ export default function Process({ order = {}, paymentMethods = [] }) {
                                                     {item.product_name} × {item.quantity}
                                                 </span>
                                                 <span className="text-gray-900">
-                                                    ${parseFloat(item.subtotal).toFixed(2)}
+                                                    Rs. {parseFloat(item.subtotal).toFixed(2)}
                                                 </span>
                                             </div>
                                         ))}
@@ -248,20 +248,20 @@ export default function Process({ order = {}, paymentMethods = [] }) {
                                     <div className="border-t pt-4 space-y-2">
                                         <div className="flex justify-between text-sm">
                                             <span className="text-gray-600">Subtotal</span>
-                                            <span>${parseFloat(order.subtotal).toFixed(2)}</span>
+                                            <span>Rs. {parseFloat(order.subtotal).toFixed(2)}</span>
                                         </div>
                                         <div className="flex justify-between text-sm">
                                             <span className="text-gray-600">Tax</span>
-                                            <span>${parseFloat(order.tax).toFixed(2)}</span>
+                                            <span>Rs. {parseFloat(order.tax).toFixed(2)}</span>
                                         </div>
                                         <div className="flex justify-between text-sm">
                                             <span className="text-gray-600">Delivery</span>
-                                            <span>${parseFloat(order.delivery_fee).toFixed(2)}</span>
+                                            <span>Rs. {parseFloat(order.delivery_fee).toFixed(2)}</span>
                                         </div>
                                         {parseFloat(order.discount) > 0 && (
                                             <div className="flex justify-between text-sm text-green-600">
                                                 <span>Discount</span>
-                                                <span>-${parseFloat(order.discount).toFixed(2)}</span>
+                                                <span>-Rs. {parseFloat(order.discount).toFixed(2)}</span>
                                             </div>
                                         )}
                                     </div>
@@ -270,7 +270,7 @@ export default function Process({ order = {}, paymentMethods = [] }) {
                                         <div className="flex justify-between text-lg font-bold">
                                             <span>Total</span>
                                             <span className="text-rose-600">
-                                                ${parseFloat(order.total).toFixed(2)}
+                                                Rs. {parseFloat(order.total).toFixed(2)}
                                             </span>
                                         </div>
                                     </div>

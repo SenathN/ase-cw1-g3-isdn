@@ -84,7 +84,7 @@ export default function Show({ invoice = {}, canPay = false }) {
                             <div>
                                 <h4 className="mb-2 text-sm font-medium text-gray-500">Total Amount</h4>
                                 <p className="text-xl font-bold text-rose-600">
-                                    ${parseFloat(invoice.total).toFixed(2)}
+                                    Rs. {parseFloat(invoice.total).toFixed(2)}
                                 </p>
                             </div>
                         </div>
@@ -140,10 +140,10 @@ export default function Show({ invoice = {}, canPay = false }) {
                                             {item.quantity}
                                         </td>
                                         <td className="px-6 py-4 text-right text-sm text-gray-600">
-                                            ${parseFloat(item.unit_price).toFixed(2)}
+                                            Rs. {parseFloat(item.unit_price).toFixed(2)}
                                         </td>
                                         <td className="px-6 py-4 text-right text-sm font-medium text-gray-900">
-                                            ${parseFloat(item.subtotal).toFixed(2)}
+                                            Rs. {parseFloat(item.subtotal).toFixed(2)}
                                         </td>
                                     </tr>
                                 ))}
@@ -154,7 +154,7 @@ export default function Show({ invoice = {}, canPay = false }) {
                                         Subtotal
                                     </td>
                                     <td className="px-6 py-3 text-right text-sm text-gray-900">
-                                        ${parseFloat(invoice.subtotal).toFixed(2)}
+                                        Rs. {parseFloat(invoice.subtotal).toFixed(2)}
                                     </td>
                                 </tr>
                                 <tr>
@@ -162,7 +162,7 @@ export default function Show({ invoice = {}, canPay = false }) {
                                         Tax
                                     </td>
                                     <td className="px-6 py-3 text-right text-sm text-gray-900">
-                                        ${parseFloat(invoice.tax).toFixed(2)}
+                                        Rs. {parseFloat(invoice.tax).toFixed(2)}
                                     </td>
                                 </tr>
                                 <tr className="border-t border-gray-200">
@@ -170,7 +170,7 @@ export default function Show({ invoice = {}, canPay = false }) {
                                         Total Due
                                     </td>
                                     <td className="px-6 py-4 text-right text-lg font-bold text-rose-600">
-                                        ${parseFloat(invoice.total).toFixed(2)}
+                                        Rs. {parseFloat(invoice.total).toFixed(2)}
                                     </td>
                                 </tr>
                             </tfoot>
@@ -194,7 +194,7 @@ export default function Show({ invoice = {}, canPay = false }) {
                                         </div>
                                         <div className="text-right">
                                             <p className="font-semibold text-gray-900">
-                                                ${parseFloat(payment.amount).toFixed(2)}
+                                                Rs. {parseFloat(payment.amount).toFixed(2)}
                                             </p>
                                             <span
                                                 className={`text-xs font-medium ${

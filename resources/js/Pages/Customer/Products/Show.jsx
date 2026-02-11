@@ -82,11 +82,11 @@ export default function Show({ product = {}, relatedProducts = [] }) {
 
                                 <div className="mb-6 flex items-baseline gap-3">
                                     <span className="text-3xl font-bold text-rose-600">
-                                        ${parseFloat(product.price).toFixed(2)}
+                                        Rs. {parseFloat(product.price).toFixed(2)}
                                     </span>
                                     {product.original_price && product.is_on_sale && (
                                         <span className="text-xl text-gray-400 line-through">
-                                            ${parseFloat(product.original_price).toFixed(2)}
+                                            Rs. {parseFloat(product.original_price).toFixed(2)}
                                         </span>
                                     )}
                                     <span className="text-gray-500">
@@ -192,7 +192,7 @@ export default function Show({ product = {}, relatedProducts = [] }) {
                                                 {relatedProduct.name}
                                             </h4>
                                             <p className="mt-1 text-sm font-bold text-rose-600">
-                                                ${parseFloat(relatedProduct.price).toFixed(2)}
+                                                Rs. {parseFloat(relatedProduct.price).toFixed(2)}
                                             </p>
                                         </div>
                                     </Link>
