@@ -1,8 +1,12 @@
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
 import { Button } from '@headlessui/react';
-import { Head, Link, router } from '@inertiajs/react';
+import { Head, Link, router, usePage } from '@inertiajs/react';
+import { useState } from 'react';
+import Toast from '@/Components/Toast';
 
 export default function Index({ schedules }) {
+    const { flash } = usePage().props;
+    const [showToast, setShowToast] = useState(!!flash?.message);
 
     const destroy = (id) => {
         if (confirm('Delete this schedule?')) {
@@ -19,6 +23,14 @@ export default function Index({ schedules }) {
             }
         >
             <Head title="Delivery Schedules" />
+
+            {showToast && flash.message && (
+                <Toast 
+                    message={flash.message} 
+                    type={flash.type || 'success'}
+                    onClose={() => setShowToast(false)}
+                />
+            )}
 
             <div className="py-12">
                 <div className="mx-auto max-w-7xl sm:px-6 lg:px-8">

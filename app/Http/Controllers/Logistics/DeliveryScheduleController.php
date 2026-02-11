@@ -29,23 +29,31 @@ class DeliveryScheduleController extends Controller
 
     public function store(Request $request)
     {
-        $validated = $request->validate([
-            'order_id' => 'required|exists:orders,id',
-            'driver_id' => 'required|exists:drivers,id',
-            'scheduled_date' => 'required|date',
-            'scheduled_time' => 'required',
-            'route_notes' => 'nullable|string'
-        ]);
+        try {
+            $validated = $request->validate([
+                'order_id' => 'required|exists:orders,id',
+                'driver_id' => 'required|exists:drivers,id',
+                'scheduled_date' => 'required|date',
+                'scheduled_time' => 'required',
+                'route_notes' => 'nullable|string'
+            ]);
 
-        $validated['created_by'] = auth()->id();
+            $validated['created_by'] = auth()->id();
 
-        DeliverySchedule::create(
-            collect($validated)->merge([
-                'code' => ucwords( 'ISDNDLV-'.Str::random(4).'-'.Str::random(3) ),
-            ])->toArray()
-        );
+            DeliverySchedule::create(
+                collect($validated)->merge([
+                    'code' => ucwords( 'ISDNDLV-'.Str::random(4).'-'.Str::random(3) ),
+                ])->toArray()
+            );
 
-        return redirect()->route('logistics.schedules.index');
+            return redirect()->route('logistics.schedules.index')
+                ->with('message', 'Delivery schedule created successfully!')
+                ->with('type', 'success');
+        } catch (\Exception $e) {
+            return redirect()->route('logistics.schedules.index')
+                ->with('message', 'Failed to create delivery schedule: ' . $e->getMessage())
+                ->with('type', 'error');
+        }
     }
 
     public function edit(DeliverySchedule $deliverySchedule)
@@ -57,16 +65,24 @@ class DeliveryScheduleController extends Controller
 
     public function update(Request $request, DeliverySchedule $deliverySchedule)
     {
-        $validated = $request->validate([
-            'scheduled_date' => 'required|date',
-            'scheduled_time' => 'required',
-            'route_notes' => 'nullable|string',
-            'status' => 'required|string'
-        ]);
+        try {
+            $validated = $request->validate([
+                'scheduled_date' => 'required|date',
+                'scheduled_time' => 'required',
+                'route_notes' => 'nullable|string',
+                'status' => 'required|string'
+            ]);
 
-        $deliverySchedule->update($validated);
+            $deliverySchedule->update($validated);
 
-        return redirect()->route('logistics.schedules.index');
+            return redirect()->route('logistics.schedules.index')
+                ->with('message', 'Delivery schedule updated successfully!')
+                ->with('type', 'success');
+        } catch (\Exception $e) {
+            return redirect()->route('logistics.schedules.index')
+                ->with('message', 'Failed to update delivery schedule: ' . $e->getMessage())
+                ->with('type', 'error');
+        }
     }
 
     public function destroy(DeliverySchedule $deliverySchedule)
