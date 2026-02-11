@@ -6,7 +6,8 @@ import { Link, usePage } from '@inertiajs/react';
 import { useState } from 'react';
 
 export default function CustomerLayout({ header, children }) {
-    const user = usePage().props.auth.user;
+    const { auth } = usePage().props;
+    const user = auth?.user;
 
     const [showingNavigationDropdown, setShowingNavigationDropdown] =
         useState(false);
@@ -15,8 +16,21 @@ export default function CustomerLayout({ header, children }) {
         { name: 'Dashboard', route: 'customer.dashboard', current: 'customer.dashboard' },
         { name: 'Products', route: 'customer.products.index', current: 'customer.products.*' },
         { name: 'My Orders', route: 'customer.orders.index', current: 'customer.orders.*' },
+        { name: 'Tracking', route: 'customer.tracking.index', current: 'customer.tracking.*' },
         { name: 'Cart', route: 'customer.cart.index', current: 'customer.cart.*' },
     ];
+
+    // Show a loading state instead of returning null when user is not yet available
+    if (!user) {
+        return (
+            <div className="min-h-screen bg-gray-100 flex items-center justify-center">
+                <div className="text-center">
+                    <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-rose-600 mx-auto"></div>
+                    <p className="mt-4 text-gray-500">Loading...</p>
+                </div>
+            </div>
+        );
+    }
 
     return (
         <div className="min-h-screen bg-gray-100">
@@ -46,7 +60,7 @@ export default function CustomerLayout({ header, children }) {
                         <div className="hidden sm:ms-6 sm:flex sm:items-center">
                             {/* RDC Location indicator */}
                             {user.preferred_rdc && (
-                                <span className="mr-4 text-sm text-gray-500 bg-gray-100 px-3 py-1 rounded-full">
+                                <span className="mr-4 text-sm text-rose-700 bg-rose-50 px-3 py-1 rounded-full">
                                     📍 {user.preferred_rdc} RDC
                                 </span>
                             )}

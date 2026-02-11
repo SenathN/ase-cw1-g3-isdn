@@ -2,6 +2,12 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Customer\DashboardController as CustomerDashboardController;
+use App\Http\Controllers\Customer\ProductController as CustomerProductController;
+use App\Http\Controllers\Customer\CartController as CustomerCartController;
+use App\Http\Controllers\Customer\OrderController as CustomerOrderController;
+use App\Http\Controllers\Customer\TrackingController as CustomerTrackingController;
+use App\Http\Controllers\Customer\InvoiceController as CustomerInvoiceController;
+use App\Http\Controllers\Customer\PaymentController as CustomerPaymentController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -29,18 +35,39 @@ Route::get('/dashboard', function () {
 Route::middleware(['auth', 'verified', 'role:customer'])->prefix('customer')->name('customer.')->group(function () {
     Route::get('/dashboard', [CustomerDashboardController::class, 'index'])->name('dashboard');
     
-    // Placeholder routes for navigation (to be implemented later)
-    Route::get('/products', function () {
-        return Inertia::render('Customer/Products/Index');
-    })->name('products.index');
+    // Product routes
+    Route::get('/products', [CustomerProductController::class, 'index'])->name('products.index');
+    Route::get('/products/{product}', [CustomerProductController::class, 'show'])->name('products.show');
     
-    Route::get('/orders', function () {
-        return Inertia::render('Customer/Orders/Index');
-    })->name('orders.index');
+    // Cart routes
+    Route::get('/cart', [CustomerCartController::class, 'index'])->name('cart.index');
+    Route::post('/cart/add', [CustomerCartController::class, 'add'])->name('cart.add');
+    Route::patch('/cart/{item}', [CustomerCartController::class, 'update'])->name('cart.update');
+    Route::delete('/cart/{item}', [CustomerCartController::class, 'remove'])->name('cart.remove');
+    Route::delete('/cart', [CustomerCartController::class, 'clear'])->name('cart.clear');
+    Route::post('/cart/sync', [CustomerCartController::class, 'syncPrices'])->name('cart.sync');
     
-    Route::get('/cart', function () {
-        return Inertia::render('Customer/Cart/Index');
-    })->name('cart.index');
+    // Checkout & Order routes
+    Route::get('/checkout', [CustomerOrderController::class, 'checkout'])->name('checkout');
+    Route::post('/orders', [CustomerOrderController::class, 'store'])->name('orders.store');
+    Route::get('/orders', [CustomerOrderController::class, 'index'])->name('orders.index');
+    Route::get('/orders/{order}', [CustomerOrderController::class, 'show'])->name('orders.show');
+    Route::post('/orders/{order}/cancel', [CustomerOrderController::class, 'cancel'])->name('orders.cancel');
+    
+    // Tracking routes
+    Route::get('/tracking', [CustomerTrackingController::class, 'index'])->name('tracking.index');
+    Route::get('/tracking/{order}', [CustomerTrackingController::class, 'show'])->name('tracking.show');
+    
+    // Invoice routes
+    Route::get('/invoices', [CustomerInvoiceController::class, 'index'])->name('invoices.index');
+    Route::get('/invoices/{invoice}', [CustomerInvoiceController::class, 'show'])->name('invoices.show');
+    Route::get('/invoices/{invoice}/download', [CustomerInvoiceController::class, 'download'])->name('invoices.download');
+    
+    // Payment routes
+    Route::get('/payments', [CustomerPaymentController::class, 'index'])->name('payments.index');
+    Route::get('/payments/process/{order}', [CustomerPaymentController::class, 'create'])->name('payments.create');
+    Route::post('/payments/process/{order}', [CustomerPaymentController::class, 'store'])->name('payments.store');
+    Route::get('/payments/{payment}', [CustomerPaymentController::class, 'show'])->name('payments.show');
 });
 
 /*

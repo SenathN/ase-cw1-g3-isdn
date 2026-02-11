@@ -8,28 +8,28 @@ export default function Dashboard({ stats = {}, recentOrders = [] }) {
             description: 'Explore our FMCG catalog',
             href: 'customer.products.index',
             icon: '🛒',
-            color: 'bg-blue-500',
+            color: 'bg-rose-500',
         },
         {
             name: 'View Orders',
             description: 'Track your order history',
             href: 'customer.orders.index',
             icon: '📦',
-            color: 'bg-green-500',
+            color: 'bg-rose-400',
         },
         {
             name: 'Shopping Cart',
             description: 'Review items in your cart',
             href: 'customer.cart.index',
             icon: '🛍️',
-            color: 'bg-purple-500',
+            color: 'bg-rose-500',
         },
         {
             name: 'My Profile',
             description: 'Manage your account',
             href: 'profile.edit',
             icon: '👤',
-            color: 'bg-orange-500',
+            color: 'bg-rose-400',
         },
     ];
 
@@ -94,7 +94,7 @@ export default function Dashboard({ stats = {}, recentOrders = [] }) {
                                             {action.icon}
                                         </div>
                                         <div className="ml-4">
-                                            <h4 className="font-medium text-gray-900 group-hover:text-indigo-600">
+                                            <h4 className="font-medium text-gray-900 group-hover:text-rose-600">
                                                 {action.name}
                                             </h4>
                                             <p className="text-sm text-gray-500">{action.description}</p>
@@ -147,7 +147,7 @@ export default function Dashboard({ stats = {}, recentOrders = [] }) {
                                             </div>
                                             <div className="text-right">
                                                 <div className="font-medium text-gray-900">
-                                                    ${order.total_amount}
+                                                    ${parseFloat(order.total || 0).toFixed(2)}
                                                 </div>
                                                 <span className={`inline-flex rounded-full px-2 py-1 text-xs font-medium ${
                                                     order.status === 'delivered'

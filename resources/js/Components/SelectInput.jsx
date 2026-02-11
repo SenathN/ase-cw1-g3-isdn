@@ -20,7 +20,7 @@ export default forwardRef(function SelectInput(
         <select
             {...props}
             className={
-                'rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 ' +
+                'rounded-md border-gray-300 shadow-sm focus:border-rose-500 focus:ring-rose-500 ' +
                 className
             }
             ref={localRef}
