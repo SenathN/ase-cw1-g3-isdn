@@ -17,6 +17,10 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->enum('role', ['customer', 'rdc_staff', 'admin', 'logistics', 'driver', 'accounts'])->default('customer');
+            $table->string('phone', 20)->nullable();
+            $table->text('address')->nullable();
+            $table->enum('preferred_rdc', ['North', 'South', 'East', 'West', 'Central'])->nullable();
             $table->rememberToken();
             $table->timestamps();
         });
