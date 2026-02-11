@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Logistics;
 use App\Http\Controllers\Controller;
 use App\Models\DeliverySchedule;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use Inertia\Inertia;
 use Inertia\Response;
 
@@ -38,7 +39,11 @@ class DeliveryScheduleController extends Controller
 
         $validated['created_by'] = auth()->id();
 
-        DeliverySchedule::create($validated);
+        DeliverySchedule::create(
+            collect($validated)->merge([
+                'code' => ucwords( 'ISDNDLV-'.Str::random(4).'-'.Str::random(3) ),
+            ])->toArray()
+        );
 
         return redirect()->route('logistics.schedules.index');
     }

@@ -12,7 +12,7 @@ const statuses = [
     { id: 'failed', name: 'Failed' },
 ]
 
-export default function Form({ schedule = null }) {
+export default function Form({ schedule = null, onCancel = () => window.history.back() }) {
     const { data, setData, post, put, processing, errors } = useForm({
         order_id: schedule?.order_id || '',
         driver_id: schedule?.driver_id || '',
@@ -165,6 +165,16 @@ export default function Form({ schedule = null }) {
 
                 {/* Buttons */}
                 <div className="flex justify-end space-x-3">
+
+                    <button
+                        type="button"
+                        disabled={processing}
+                        className="px-6 py-2 rounded-lg bg-indigo-600 text-white font-medium hover:bg-indigo-700 transition disabled:opacity-50"
+                        onClick={onCancel}
+                    >
+                        Cancel
+                    </button>
+
                     <button
                         type="submit"
                         disabled={processing}
@@ -172,6 +182,7 @@ export default function Form({ schedule = null }) {
                     >
                         {schedule ? 'Update Schedule' : 'Create Schedule'}
                     </button>
+
                 </div>
             </form>
         </div>

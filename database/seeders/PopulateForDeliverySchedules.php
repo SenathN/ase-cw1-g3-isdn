@@ -23,7 +23,7 @@ class PopulateForDeliverySchedules extends Seeder
             ]);
         });
 
-        $driver_user_instance = \App\Models\User::firstOrCreate([
+        $driver_user_instance = \App\Models\User::factory()->create([
             'name' => 'Test User',
             'email' => 'test@example.com',
         ]);

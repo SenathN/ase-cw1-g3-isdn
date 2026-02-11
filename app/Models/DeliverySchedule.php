@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class DeliverySchedule extends Model
 {
     protected $fillable = [
+        'code',
         'order_id',
         'driver_id',
         'scheduled_date',

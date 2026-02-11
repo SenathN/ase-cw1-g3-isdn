@@ -20,7 +20,6 @@ export default function Index({ schedules }) {
         >
             <Head title="Delivery Schedules" />
 
-
             <div className="py-12">
                 <div className="mx-auto max-w-7xl sm:px-6 lg:px-8">
                     <div className="overflow-hidden bg-white shadow-sm sm:rounded-lg">
@@ -32,29 +31,29 @@ export default function Index({ schedules }) {
                                 </Link>
                             </Button>
 
-                            <table class="min-w-full divide-y divide-gray-200">
+                            <table className="min-w-full divide-y divide-gray-200">
                                 <thead className='bg-gray-200'>
                                     <tr>
-                                        <th class="px-6 py-3 text-left text-xs font-semibold text-gray-600 uppercase">ID</th>
-                                        <th class="px-6 py-3 text-left text-xs font-semibold text-gray-600 uppercase">Order</th>
-                                        <th class="px-6 py-3 text-left text-xs font-semibold text-gray-600 uppercase">Driver</th>
-                                        <th class="px-6 py-3 text-left text-xs font-semibold text-gray-600 uppercase">Status</th>
-                                        <th class="px-6 py-3 text-left text-xs font-semibold text-gray-600 uppercase">Actions</th>
+                                        <th className="px-6 py-3 text-left text-xs font-semibold text-gray-600 uppercase">ID</th>
+                                        <th className="px-6 py-3 text-left text-xs font-semibold text-gray-600 uppercase">Order</th>
+                                        <th className="px-6 py-3 text-left text-xs font-semibold text-gray-600 uppercase">Driver</th>
+                                        <th className="px-6 py-3 text-left text-xs font-semibold text-gray-600 uppercase">Status</th>
+                                        <th className="px-6 py-3 text-left text-xs font-semibold text-gray-600 uppercase">Actions</th>
                                     </tr>
                                 </thead>
-                                <tbody class="bg-white divide-y divide-gray-200 text-sm">
+                                <tbody className="bg-white divide-y divide-gray-200 text-sm">
                                     {schedules.map(schedule => (
-                                        <tr key={schedule.id} class="hover:bg-gray-50 transition">
-                                            <td class="px-6 py-4 text-gray-600">{schedule.id}</td>
-                                            <td class="px-6 py-4 text-gray-600">{schedule.order_id}</td>
-                                            <td class="px-6 py-4 text-gray-600">{schedule.driver_id}</td>
-                                            <td class="px-6 py-4 text-gray-600">{schedule.status}</td>
-                                            <td class="px-6 py-4 text-gray-600">
+                                        <tr key={schedule.id} className="hover:bg-gray-50 transition">
+                                            <td className="px-6 py-4 text-gray-600">{schedule.id}</td>
+                                            <td className="px-6 py-4 text-gray-600">{schedule.code}</td>
+                                            <td className="px-6 py-4 text-gray-600">{schedule?.driver?.code ?? "N/A"}</td>
+                                            <td className="px-6 py-4 text-gray-600">{schedule.status.charAt(0).toUpperCase() + schedule.status.slice(1)}</td>
+                                            <td className="px-6 py-4 text-gray-600 flex space-x-4">
                                                 <Link href={route('logistics.schedules.edit', schedule.id)}>
                                                     Edit
                                                 </Link>
 
-                                                <Button class="text-red-600 hover:text-red-800 font-medium" onClick={() => destroy(schedule.id)}>
+                                                <Button className="text-red-600 hover:text-red-800 font-medium" onClick={() => destroy(schedule.id)}>
                                                     Delete
                                                 </Button>
                                             </td>
