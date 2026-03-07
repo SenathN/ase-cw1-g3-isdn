@@ -30,6 +30,7 @@ return new class extends Migration
             $table->text('route_notes')->nullable();
 
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
