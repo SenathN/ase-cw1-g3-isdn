@@ -377,7 +377,7 @@ app/Services/
 **Group Tasks:**
 
 1. **Software Development Methodology**
-   - Selected: **Agile Scrum**
+   - Selected: **Waterfall Method**
    - 2-week sprints
    - Daily standups
    - Sprint reviews and retrospectives
@@ -1514,4 +1514,4 @@ The project is complete when:
 **Project Start Date**: [To be determined]
 **Expected Completion**: 16 weeks from start date
 **Team Size**: 3 developers
-**Methodology**: Agile Scrum (2-week sprints)
+**Methodology**: Waterfall Method (Entire SDLC)
